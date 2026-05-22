@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simplex M Results</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/styles/SimplexMStyle.css" />
+  </head>
+  <body>
+    <div class="results-container">
+      <div class="page-header">
+        <h1>Simplex Method with Big M</h1>
+        <p>Results of the linear optimization</p>
+      </div>
+
+      <div class="content-grid">
+        <div class="summary-section">
+          <h2>Summary of Results</h2>
+
+          <div class="summary-item">
+            <div class="label">Optimal Solution</div>
+            <div class="value solution-point">
+              <code id="solucion">Cargando...</code>
+            </div>
+          </div>
+
+          <div class="summary-item">
+            <div class="label">Optimal Value</div>
+            <div class="value optimal-value" id="valor_optimo">Cargando...</div>
+          </div>
+
+          <div class="summary-item">
+            <div class="label">State of the Solution</div>
+            <div class="value" id="estado">Cargando...</div>
+          </div>
+
+          <div class="summary-item sensitivity-section">
+            <div class="label">Análisis de Sensibilidad</div>
+            <div class="sensitivity-content">
+              <div class="sensitivity-subsection">
+                <h6 class="sensitivity-title">
+                  Precios Sombra (Valores Duales)
+                </h6>
+                <div id="precios_sombra" class="sensitivity-values">
+                  Cargando...
+                </div>
+              </div>
+              <div class="sensitivity-subsection">
+                <h6 class="sensitivity-title">Holguras de Restricciones</h6>
+                <div id="holguras" class="sensitivity-values">Cargando...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-section">
+          <h2>Iterations of the Algorithm</h2>
+
+          <div class="iteration-selector">
+            <label for="selectorIteracion" class="form-label">
+              Select Iteration:
+            </label>
+            <select
+              id="selectorIteracion"
+              class="form-select"
+              onchange="mostrarIteracion(this.value)"
+            ></select>
+          </div>
+
+          <div id="iterationInfo" class="iteration-info"></div>
+
+          <div id="tablaIteracion" class="tabla-simplex"></div>
+        </div>
+      </div>
+
+      <div class="actions-section">
+        <button class="btn-back" onclick="window.history.back()">
+          🏠 Solve Another Problem
+        </button>
+      </div>
+    </div>
+    <script src="../static/scripts/SimplexControl.js"></script>
+  </body>
+</html>

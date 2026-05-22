@@ -1,0 +1,256 @@
+.results-wrapper {
+  background-color: var(--background-color);
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.results-container {
+  background-color: var(--container-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.page-header h1 {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.page-header p {
+  color: #666;
+  font-size: 1.1rem;
+  margin: 10px 0 0 0;
+  font-weight: 500;
+}
+
+.summary-section {
+  background-color: #f8f9fa;
+  border-radius: var(--border-radius);
+  padding: 25px;
+  margin-bottom: 30px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.summary-section h2 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.summary-section h2::before {
+  content: "📊";
+  font-size: 1.3rem;
+}
+
+.summary-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.summary-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.summary-item:last-child {
+  margin-bottom: 0;
+}
+
+.summary-item .label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-item .value {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #212529;
+}
+
+.summary-item code {
+  background-color: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: "Courier New", monospace;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  border: 1px solid #dee2e6;
+}
+
+.optimal-value {
+  color: var(--success-color) !important;
+}
+
+.solution-point {
+  color: #fd7e14 !important;
+}
+
+.plot-section {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+}
+
+.plot-section h2 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plot-section h2::before {
+  content: "📈";
+  font-size: 1.3rem;
+}
+
+#plot-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.actions-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-back {
+  background-color: rgb(163, 55, 226);
+  border-color: var(--primary-color);
+  color: rgb(250, 250, 250);
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.btn-back:hover {
+  background-color: #4552e8;
+  border-color: #4552e8;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(86, 100, 245, 0.3);
+}
+
+.error-container {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 40px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--danger-color);
+}
+
+.error-container h2 {
+  color: var(--danger-color);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.error-container p {
+  color: #6c757d;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+.error-container a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.error-container a:hover {
+  text-decoration: underline;
+}
+
+/* Animaciones usando las existentes */
+.summary-item,
+.plot-section {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.plot-section {
+  animation-delay: 0.1s;
+}
+
+/* Grid responsivo */
+@media (min-width: 992px) {
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .results-container {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .summary-section,
+  .plot-section {
+    padding: 20px;
+  }
+
+  .btn-back {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .results-wrapper {
+    padding: 10px 0;
+  }
+
+  .results-container {
+    padding: 15px;
+  }
+
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .btn-back {
+    width: 100%;
+    padding: 12px;
+  }
+}
