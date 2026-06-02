@@ -218,14 +218,15 @@
 
 #plot-container {
   border-radius: 18px;
-
   overflow: hidden;
-
   background: rgba(255, 255, 255, 0.03);
-
   border: 1px solid rgba(255, 255, 255, 0.05);
-
   padding: 10px;
+
+  /* Solución al colapso vertical */
+  min-height: 500px;
+  height: 100%;
+  width: 100%;
 }
 
 /* ===== ACTIONS ===== */
@@ -357,6 +358,11 @@
   .plot-section {
     padding: 20px;
   }
+
+  #plot-container {
+    min-height: 400px;
+    /* Un poco más pequeño en tablets */
+  }
 }
 
 @media (max-width: 576px) {
@@ -375,5 +381,10 @@
 
   .btn-back {
     width: 100%;
+  }
+
+  #plot-container {
+    min-height: 350px;
+    /* Adaptabilidad para teléfonos */
   }
 }

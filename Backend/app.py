@@ -35,13 +35,14 @@ def results():
     objective_coefficients =  tuple(parse_objective_function(objective_function))
 
     if type_of_method == "Graphical Method":
-        result = metodo_grafico(objective_coefficients,only_constraint,limites = (0,10,0,10),maximizar = boolean_type)
+        result = metodo_grafico(objective_coefficients, only_constraint, limites=None, maximizar=boolean_type)
         return jsonify({
-        "plot_html": result["plot_html"], 
-        "solucion": result["solucion"], 
-        "valor_optimo": result["valor_optimo"], 
-        "restricciones": result["restricciones"], 
-        "objetivo": result["objetivo"]}), 200
+            "plot_json": result["plot_json"], 
+            "solucion": result["solucion"], 
+            "valor_optimo": result["valor_optimo"], 
+            "restricciones": result["restricciones"], 
+            "objetivo": result["objetivo"]
+        }), 200
 
     elif type_of_method == "Simplex M Method":
         sol, val, estado, solver, sensibilidad = solve_simplex_big_m(objective_coefficients,only_constraint, maximizar = boolean_type, animar = True)

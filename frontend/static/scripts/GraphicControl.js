@@ -45,28 +45,45 @@ document.addEventListener("DOMContentLoaded", function () {
   if (resultDataString) {
     const resultData = JSON.parse(resultDataString);
 
-    // Llenar los datos del resumen
-    document.getElementById("objetivo").textContent = formatObjective(
-      resultData.objetivo
-    );
-    document.getElementById("valor-optimo").textContent = formatValue(
-      resultData.valor_optimo
-    );
-    document.getElementById("solucion").textContent = formatValue(
-      resultData.solucion
-    );
+    // Llenar los datos del resumen numérico
+    if (document.getElementById("objetivo")) {
+      document.getElementById("objetivo").textContent = formatObjective(resultData.objetivo);
+    }
+    if (document.getElementById("valor-optimo")) {
+      document.getElementById("valor-optimo").textContent = formatValue(resultData.valor_optimo);
+    }
+    if (document.getElementById("solucion")) {
+      document.getElementById("solucion").textContent = formatValue(resultData.solucion);
+    }
 
-    // Insertar y ejecutar el gráfico
+    // Insertar y ejecutar el gráfico de forma limpia
     const plotContainer = document.getElementById("plot-container");
-    plotContainer.innerHTML = resultData.plot_html;
-    executeScriptsInElement(plotContainer);
+    if (plotContainer) {
+      if (resultData.plot_json) {
+        // Corrección clave: Controlamos si viene como String o ya parseado
+        const ordenGrafico = typeof resultData.plot_json === "string"
+          ? JSON.parse(resultData.plot_json)
+          : resultData.plot_json;
+
+        // Renderizado nativo e interactivo en el cliente
+        Plotly.newPlot('plot-container', ordenGrafico.data, ordenGrafico.layout, { responsive: true });
+      } else if (resultData.plot_html) {
+        plotContainer.innerHTML = resultData.plot_html;
+        executeScriptsInElement(plotContainer);
+      } else {
+        plotContainer.innerHTML = `<div class="alert alert-warning">No se detectaron matrices de dibujo para la gráfica.</div>`;
+      }
+    }
   } else {
-    // Mostrar mensaje de error
-    document.querySelector(".content-grid").innerHTML = `
-            <div class="error-container">
-              <h2> No se encontraron resultados</h2>
-              <p>Por favor, <a href="/">vuelve al inicio</a> y resuelve un problema primero.</p>
-            </div>
-          `;
+    // Mostrar mensaje de error si el localStorage está vacío
+    const grid = document.querySelector(".content-grid");
+    if (grid) {
+      grid.innerHTML = `
+        <div class="error-container" style="text-align: center; padding: 40px;">
+          <h2>No se encontraron resultados</h2>
+          <p>Por favor, <a href="/">vuelve al inicio</a> y resuelve un problema primero.</p>
+        </div>
+      `;
+    }
   }
 });
